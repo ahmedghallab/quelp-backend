@@ -3,14 +3,14 @@ package com.quelp.quelpbackend.Controller;
 import com.quelp.quelpbackend.Service.QuelpService;
 import com.quelp.quelpbackend.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityManager;
 
 @org.springframework.web.bind.annotation.RestController
 
-@RequestMapping(path="api/quelp")
+//@RequestMapping(path="api/quelp")
 public class RestController {
 
     private QuelpService service;
@@ -26,6 +26,7 @@ public class RestController {
     }
 
     @GetMapping("/getQuestions")
+    @Transactional
     public Question getQuestions() {
         Question q = new Question();
         q.setQuestion("Who asked this?");

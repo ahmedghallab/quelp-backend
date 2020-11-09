@@ -6,6 +6,6 @@ package com.quelp.quelpbackend.Repo;
 import com.quelp.quelpbackend.models.Question;
 import org.springframework.data.repository.CrudRepository;
 
-public interface QuestionRepo extends CrudRepository<Question, Integer> {
+public interface QuestionRepo extends CrudRepository<Question, Long> {
 
 }

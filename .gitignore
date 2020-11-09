@@ -1,4 +1,5 @@
 .idea
 target
-quelp-backend.iml
+.iml
 .DS_Store
+.gradle
