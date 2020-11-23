@@ -2,34 +2,29 @@ package com.quelp.quelpbackend.models;
 
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="Questions")
-//@Table(name="questions")
-public class Question extends BaseEntity  {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long questionId;
+@Entity
+public class Question {
+    private String id;
     private String question;
     private String description;
-//    @Type(type="string-array")
-//    @Column(
-//            name = "question_reactions",
-//            columnDefinition = "text[]"
-//    )
-//    private String[] reactions;
-//    @Type(type="string-array")
-//    @Column(
-//            name = "question_children",
-//            columnDefinition = "integer[]"
-//    )
-//    private ArrayList<UUID> childrenAnswers;
+    private int likes;
+    private int dislikes;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @javax.persistence.Id
+    public String getId() {
+        return id;
+    }
 
 }

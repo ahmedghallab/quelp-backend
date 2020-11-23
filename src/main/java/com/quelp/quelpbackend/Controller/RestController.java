@@ -1,6 +1,5 @@
 package com.quelp.quelpbackend.Controller;
 
-import com.quelp.quelpbackend.Service.QuelpService;
 import com.quelp.quelpbackend.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import javax.persistence.EntityManager;
 //@RequestMapping(path="api/quelp")
 public class RestController {
 
-    private QuelpService service;
 
     @Autowired
     private EntityManager entityManager;
@@ -28,9 +26,12 @@ public class RestController {
     @GetMapping("/getQuestions")
     @Transactional
     public Question getQuestions() {
-        Question q = new Question();
-        q.setQuestion("Who asked this?");
-        q.setDescription("Question description");
+        Question q = Question.builder()
+                .question("Who asked this?")
+                .description("Question description")
+                .id("4" + Math.random())
+                .build();
+//        Question q = new Question(Long.getLong(UUID.randomUUID().toString()),"qw","wq",1,2);
         entityManager.persist(q);
         return q;
     }
