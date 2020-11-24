@@ -2,6 +2,7 @@ package com.quelp.quelpbackend.Controller;
 
 import com.quelp.quelpbackend.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -17,7 +18,14 @@ public class RestController {
     private EntityManager entityManager;
 
     @GetMapping("/questionId")
-    public Question getQuestionById() {
+    public Question getQuestionById(@Param("id") String id) {
+        Question q = new Question();
+        q.setQuestion("Hello World");
+        return q;
+    }
+
+    @GetMapping("/answerId")
+    public Question getAnswerById(@Param("id") String id) {
         Question q = new Question();
         q.setQuestion("Hello World");
         return q;
