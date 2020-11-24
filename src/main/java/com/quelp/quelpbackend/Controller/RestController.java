@@ -1,5 +1,7 @@
 package com.quelp.quelpbackend.Controller;
 
+import com.quelp.quelpbackend.Service.QuelpService;
+import com.quelp.quelpbackend.models.Answer;
 import com.quelp.quelpbackend.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -12,23 +14,19 @@ import javax.persistence.EntityManager;
 
 //@RequestMapping(path="api/quelp")
 public class RestController {
-
-
+    @Autowired
+    QuelpService service;
     @Autowired
     private EntityManager entityManager;
 
     @GetMapping("/questionId")
     public Question getQuestionById(@Param("id") String id) {
-        Question q = new Question();
-        q.setQuestion("Hello World");
-        return q;
+        return service.getQuestionById(id);
     }
 
     @GetMapping("/answerId")
-    public Question getAnswerById(@Param("id") String id) {
-        Question q = new Question();
-        q.setQuestion("Hello World");
-        return q;
+    public Answer getAnswerById(@Param("id") String id) {
+        return service.getAnswerById(id);
     }
 
     @GetMapping("/getQuestions")
