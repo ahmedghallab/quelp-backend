@@ -6,17 +6,17 @@ create table QUESTIONS(
    id BIGINT not null AUTO_INCREMENT,
    question varchar(150) not null,
    description varchar(500),
-   likes int,
-   dislikes int,
+   likes int default 0,
+   dislikes int default 0,
    PRIMARY KEY ( id )
 );
 
 create table ANSWERS(
    id BIGINT not null AUTO_INCREMENT,
    answer text,
-   likes int,
-   dislikes int,
-   questionId BIGINT,
+   likes int default 0,
+   dislikes int default 0,
+   questionId BIGINT not null,
    PRIMARY KEY ( id ),
    FOREIGN KEY (questionId) REFERENCES QUESTIONS(id) ON DELETE CASCADE
 );

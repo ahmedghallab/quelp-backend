@@ -12,17 +12,17 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Entity
 public class Answer {
-    private String id;
+    private Long id;
     private String answer;
     private int likes;
     private int dislikes;
-
-    public void setId(String id) {
+    private Long questionId;
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Id
-    public String getId() {
+    public Long getId() {
         return id;
     }
 }
