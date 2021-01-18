@@ -1,31 +1,36 @@
 package com.quelp.quelpbackend.Service;
 
 import com.quelp.quelpbackend.Repo.AnswerRepo;
+import com.quelp.quelpbackend.Repo.QuestionRepo;
 import com.quelp.quelpbackend.models.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnswerService {
     AnswerRepo answerRepo;
-
+    QuestionRepo questionRepo;
     @Autowired
-    public AnswerService(AnswerRepo answerRepo) {
+    public AnswerService(AnswerRepo answerRepo, QuestionRepo questionRepo)
+    {
+        this.questionRepo = questionRepo;
         this.answerRepo = answerRepo;
     }
 
-    public Answer getAnswerById(Long id) {
-        return answerRepo.getOne(id);
+    public Optional<Answer> getAnswerById(Long id) {
+        return answerRepo.findById(id);
     }
     public List<Answer> getAll() {
         return answerRepo.findAll();
     }
 
     public void addAnswer(Answer answer) {
+        long questionId = questionRepo.findById(answer.getQuestionId()).get().getId();
         answerRepo.addAnswer(answer.getId(),
-                answer.getAnswer(), answer.getQuestionId());
+                answer.getAnswer(), questionId);
     }
 
     public List<Answer> findAnswersByQuestionId(Long id) {

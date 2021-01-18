@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @org.springframework.web.bind.annotation.RestController
@@ -22,7 +23,7 @@ public class QuestionRestController {
     }
 
     @GetMapping("/questionId")
-    public Question getQuestionById(@Param("id") String id) {
+    public Optional<Question> getQuestionById(@Param("id") String id) {
         return questionService.getQuestionById(id);
     }
 

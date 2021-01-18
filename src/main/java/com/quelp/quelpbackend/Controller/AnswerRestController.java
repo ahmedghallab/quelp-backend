@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @org.springframework.web.bind.annotation.RestController
@@ -22,15 +23,9 @@ public class AnswerRestController {
     }
 
     @GetMapping("/answerId")
-    public Answer getAnswerId(@Param("id") String id) {
+    public Optional<Answer> getAnswerById(@Param("id") String id) {
         return answerService.getAnswerById(Long.valueOf(id));
     }
-
-    @GetMapping("/answerByQuestionId")
-    public Answer getAnswerByQuestionId(@Param("id") String id) {
-        return answerService.findAnswerByQuestionId(Long.valueOf(id));
-    }
-
 
     @GetMapping("/answers")
     public List<Answer> getAllQuestions(@Param("id") String id) {
@@ -42,7 +37,7 @@ public class AnswerRestController {
         this.answerService.addAnswer(question);
     }
 
-    @GetMapping("/all-answers")
+    @GetMapping("/allAnswers")
     public List<Answer> getAnswers() {
         return answerService.getAll();
     }

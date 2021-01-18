@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -16,8 +17,8 @@ public class QuestionService {
         this.questionRepo = questionRepo;
     }
 
-    public Question getQuestionById (String id){
-        return questionRepo.getOne(Long.parseLong(id));
+    public Optional<Question> getQuestionById (String id){
+        return questionRepo.findById(Long.parseLong(id));
     }
 
     public void addQuestion (Question question){

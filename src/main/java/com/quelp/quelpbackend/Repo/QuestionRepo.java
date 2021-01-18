@@ -12,15 +12,17 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface QuestionRepo extends JpaRepository<Question, Long> {
     @Modifying
-    @Query(value = "insert into QUESTIONS (id,question,description) VALUES (:id,:question,:description)", nativeQuery = true)
+    @Query(value = "insert into QUESTION (id,question,description) VALUES (:id,:question,:description)", nativeQuery = true)
     @Transactional
     void addQuestion(@Param("id") Long id, @Param("question") String question, @Param("description") String description);
 
-    @Query(value = "SELECT * FROM QUESTIONS", nativeQuery = true)
+    @Query(value = "SELECT * FROM QUESTION", nativeQuery = true)
     List<Question> findAll();
 
-//    Question findById(@Param("id") String id);
+//    @Query(value = "SELECT question FROM QUESTIONS WHERE id=:id", nativeQuery = true)
+    Optional<Question> findById(@Param("id") Long id);
 }

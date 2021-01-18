@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS ANSWERS;
-DROP TABLE IF EXISTS QUESTIONS;
+DROP TABLE IF EXISTS ANSWER;
+DROP TABLE IF EXISTS QUESTION;
 
 
-create table QUESTIONS(
+create table QUESTION(
    id BIGINT not null AUTO_INCREMENT,
    question varchar(150) not null,
    description varchar(500),
@@ -11,18 +11,18 @@ create table QUESTIONS(
    PRIMARY KEY ( id )
 );
 
-create table ANSWERS(
+create table ANSWER(
    id BIGINT not null AUTO_INCREMENT,
    answer text,
    likes int default 0,
    dislikes int default 0,
    questionId BIGINT not null,
    PRIMARY KEY ( id ),
-   FOREIGN KEY (questionId) REFERENCES QUESTIONS(id) ON DELETE CASCADE
+   FOREIGN KEY (questionId) REFERENCES QUESTION(id) ON DELETE CASCADE
 );
 
-INSERT INTO QUESTIONS (id, question, description, likes, dislikes)
+INSERT INTO QUESTION (id, question, description, likes, dislikes)
 VALUES ('1', 'First question on quelp', 'More useless talk', '100', '150');
 
-INSERT INTO ANSWERS (id, answer, likes, dislikes, questionId)
+INSERT INTO ANSWER (id, answer, likes, dislikes, questionId)
 VALUES ('1', 'First answer on quelp', '1030', '1250','1');
